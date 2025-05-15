@@ -1,0 +1,50 @@
+Đề Bài Mô Phỏng Trận Chiến Giữa Quân Đoàn La Mã và Quân Mông Cổ
+
+1. Mô tả bài toán
+Bạn được giao nhiệm vụ lập trình một mô phỏng trận chiến giữa quân đoàn La Mã và quân Mông Cổ. Trận chiến tuân theo các quy tắc chiến đấu đặc biệt, bao gồm hệ thống chỉ huy, mua vũ khí, và đánh trận theo lượt.
+Chương trình của bạn sẽ đọc dữ liệu từ file testcase.txt, xử lý các thông tin về quân đoàn, sau đó thực hiện các hành động như mua vũ khí, tấn công, và ghi kết quả vào file answer.txt.
+
+
+2. Yêu cầu chi tiết
+
+2.1. Cấu trúc chương trình
+Chương trình bao gồm các lớp chính sau:
+• Lớp Warrior: Đại diện cho một chiến binh với các thuộc tính:
+• name: Tên chiến binh.
+• hp: Chỉ số sức mạnh ban đầu.
+• gold: Số tiền hiện có.
+• isCommander: Chỉ định có phải là chỉ huy không. (0 -1)
+• attack(Warrior opponent): Gây sát thương ngẫu nhiên từ 10 - 50 HP cho đối thủ.
+• Lớp Legion: Đại diện cho một quân đoàn, chứa danh sách các chiến binh.
+• getTotalHP(): Trả về tổng sức mạnh của quân đoàn.
+• hasCommander(): Kiểm tra quân đoàn có chỉ huy không.
+• purchaseWeapons(int eventCode): Mua vũ khí dựa vào sự kiện (xem chi tiết bên dưới).
+• Lớp Battle: Điều phối trận chiến giữa hai quân đoàn.
+• fight(Legion legion1, Legion legion2): Bắt đầu trận chiến.
+• Lớp Main: Thực thi chương trình.
+
+
+2.2. Quy tắc mua vũ khí
+
+Trước khi trận chiến diễn ra, quân đoàn La Mã có thể mua vũ khí nếu 
+eventCode thuộc [100, 199].  Vũ khí có sẵn trong cửa hàng như sau:
+Tên	Giá tiền	Tác dụng	Yêu cầu
+WP1	300	+50 HP	HP ≥ 500 và số tiền lẻ
+WP2	200	+25 HP	Số tiền chẵn
+
+Quy trình mua:
+1. Độ cao thử thách h = (eventCode - 100) % 64
+2. Chiến binh phải có sức nhảy J = HP % 100 lớn hơn h để xem được vũ khí.
+3. Nếu chiến binh đủ điều kiện về HP và vàng, họ có thể mua được vũ khí.
+4. Nếu quân đoàn được chỉ huy bởi vua, họ mua cả hai món mà không cần thử thách và không tốn tiền.
+5. Nếu quân đoàn được chỉ huy bởi tướng Mông Cổ, họ không mua gì cả.
+2.3. Quy tắc chiến đấu
+• Mỗi lượt, một chiến binh từ mỗi quân đoàn được chọn ngẫu nhiên để tấn công nhau.
+• Chiến binh tấn công gây sát thương ngẫu nhiên từ 10 đến 50 HP.
+• Khi một quân đoàn có tổng HP bằng hoặc nhỏ hơn 0, trận chiến kết thúc.
+• Kết quả cuối cùng được ghi vào answer.txt.
+Ví dụ: 
+File Input (testcase.txt)
+ 
+ File Output (answer.txt)
+ 
